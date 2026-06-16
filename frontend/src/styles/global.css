@@ -1,0 +1,131 @@
+/* ===== CSS Variables ===== */
+:root {
+  --color-ink: #0f0f0f;
+  --color-ink-light: #3a3a3a;
+  --color-ink-muted: #767676;
+  --color-paper: #faf9f6;
+  --color-paper-dark: #f0ede8;
+  --color-white: #ffffff;
+  --color-accent: #c8502a;
+  --color-accent-hover: #a8402a;
+  --color-accent-light: #f5e8e4;
+  --color-success: #2d7a4f;
+  --color-success-light: #e6f4ec;
+  --color-warning: #b07d28;
+  --color-warning-light: #fdf3e3;
+  --color-error: #c0392b;
+  --color-error-light: #fce8e6;
+  --color-draft: #6b7280;
+  --color-draft-light: #f3f4f6;
+  --color-published: #2d7a4f;
+  --color-published-light: #e6f4ec;
+  --color-archived: #9a6f2e;
+  --color-archived-light: #fef3e2;
+  --color-border: #e0ddd8;
+  --color-border-light: #ece9e4;
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.1);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  --transition: 200ms ease;
+  --header-height: 64px;
+}
+
+/* ===== Reset ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  line-height: 1.25;
+  color: var(--color-ink);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+input, select, textarea {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ===== Layout ===== */
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.page-content {
+  padding-top: calc(var(--header-height) + 32px);
+  padding-bottom: 48px;
+  min-height: 100vh;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-paper-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ink-muted);
+}
+
+/* ===== Utility classes ===== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
