@@ -1,0 +1,190 @@
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  margin-bottom: 10px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--color-success-light);
+  color: var(--color-success);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.title {
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  max-width: 760px;
+  color: var(--color-ink-light);
+}
+
+.linkBtn {
+  flex-shrink: 0;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-white);
+  color: var(--color-ink-light);
+}
+
+.linkBtn:hover {
+  background: var(--color-paper-dark);
+  text-decoration: none;
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.analysisGrid,
+.bottomGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.bottomGrid {
+  grid-template-columns: 1.1fr 1fr 1fr;
+}
+
+.table,
+.authorGrid,
+.recommendations {
+  display: grid;
+  gap: 12px;
+}
+
+.tableRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  background: var(--color-paper);
+}
+
+.rankCell,
+.shareCell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rank {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-white);
+  color: var(--color-accent);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.shareCell {
+  color: var(--color-ink-muted);
+  font-size: 0.86rem;
+}
+
+.authorGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.authorCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px;
+  border-radius: var(--radius-md);
+  background: var(--color-paper);
+}
+
+.authorInitial {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-paper-dark);
+  font-weight: 700;
+}
+
+.authorCard p,
+.authorMeta span,
+.tipCard p {
+  font-size: 0.88rem;
+  color: var(--color-ink-light);
+}
+
+.authorMeta {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--color-ink-muted);
+}
+
+.tipCard {
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: var(--color-paper);
+}
+
+.tipTag {
+  display: inline-flex;
+  margin-bottom: 8px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--color-accent-light);
+  color: var(--color-accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+@media (max-width: 1100px) {
+  .metricsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .bottomGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 840px) {
+  .header,
+  .analysisGrid {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+}
+
+@media (max-width: 640px) {
+  .metricsGrid,
+  .analysisGrid,
+  .authorGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .tableRow,
+  .shareCell {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

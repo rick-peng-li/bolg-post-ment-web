@@ -70,12 +70,14 @@ backend/
 frontend/
 ├── src/
 │   ├── components/
-│   │   ├── common/   通用组件：Header、Spinner、StatusBadge、ConfirmModal
-│   │   └── posts/    业务组件：PostForm、PostTable、Pagination
+│   │   ├── common/     通用组件：Header、Spinner、StatusBadge、ConfirmModal
+│   │   ├── dashboard/  仪表盘、洞察页、工作流复用组件
+│   │   └── posts/      文章业务组件：PostForm、PostTable、Pagination
+│   ├── hooks/        文章聚合数据 Hook
 │   ├── pages/        页面级组件
 │   ├── services/     API 请求封装
 │   ├── styles/       全局样式
-│   ├── utils/        常量、工具函数、校验规则
+│   ├── utils/        常量、工具函数、校验规则、内容统计
 │   ├── App.jsx       路由入口
 │   └── main.jsx      应用挂载入口
 ├── package.json
@@ -99,19 +101,24 @@ frontend/
 
 | 模块 | 位置 | 功能说明 |
 | --- | --- | --- |
-| 应用路由 | `frontend/src/App.jsx` | 配置首页、新建、详情、编辑、404 页面 |
+| 应用路由 | `frontend/src/App.jsx` | 配置总览、文章列表、工作流、洞察、新建、详情、编辑、404 页面 |
 | 请求服务 | `frontend/src/services/postService.js` | 封装文章接口调用及错误拦截 |
+| 聚合 Hook | `frontend/src/hooks/usePostsDataset.js` | 统一拉取文章全集，为多页面统计分析提供数据源 |
+| 仪表盘组件 | `frontend/src/components/dashboard/*` | 统计卡片、面板、迷你文章列表、工作流列等复用组件 |
 | 表单组件 | `frontend/src/components/posts/PostForm.jsx` | 统一承载新增与编辑表单 |
 | 列表表格 | `frontend/src/components/posts/PostTable.jsx` | 展示文章列表及操作按钮 |
 | 分页组件 | `frontend/src/components/posts/Pagination.jsx` | 处理页码切换 |
 | 通用组件 | `frontend/src/components/common/*` | 头部导航、加载态、状态徽标、确认弹窗 |
-| 工具模块 | `frontend/src/utils/*` | 分类常量、状态常量、日期格式化、文本截断、Yup 校验规则 |
+| 内容分析工具 | `frontend/src/utils/postAnalytics.js` | 负责状态统计、分类分布、作者榜单、趋势与建议生成 |
 
 ## 5. 页面设计
 
 | 页面 | 路由 | 主要功能 |
 | --- | --- | --- |
+| 内容总览页 | `/dashboard` | 展示总体统计、最近更新、分类分布、作者活跃度、月度趋势与运营建议 |
 | 文章列表页 | `/` | 分页浏览文章、搜索、分类筛选、状态筛选、删除、导出 CSV |
+| 工作流看板页 | `/workflow` | 按 Draft、Published、Archived 分组查看内容推进状态 |
+| 内容洞察页 | `/insights` | 查看封面率、摘要率、标签率、分类结构、作者贡献与内容建议 |
 | 新建文章页 | `/posts/new` | 创建新文章，提交前进行表单校验 |
 | 文章详情页 | `/posts/:id` | 查看完整文章内容、作者信息、标签、更新时间 |
 | 编辑文章页 | `/posts/:id/edit` | 加载已有文章数据并更新内容 |
@@ -119,7 +126,10 @@ frontend/
 
 ### 5.1 页面交互说明
 
+- 总览页提供全站级统计与最近更新内容，适合进入后台后的第一视角
 - 列表页支持搜索标题、作者、分类
+- 工作流看板页适合按状态管理文章生产流程
+- 洞察页用于查看内容质量、作者贡献和分类集中度
 - 删除文章时使用确认弹窗，避免误删
 - 详情页支持直接跳转到编辑页或执行删除
 - 新增页与编辑页共用同一套表单组件，降低重复代码
@@ -282,10 +292,11 @@ npm start
 
 ## 10. 当前实现特点
 
-- 采用组件化拆分，列表、表单、分页、弹窗职责清晰
-- 使用统一服务层封装接口，便于维护和扩展
+- 采用组件化拆分，列表、表单、分页、弹窗、仪表盘与工作流模块职责清晰
+- 使用统一服务层封装接口，并通过聚合 Hook 为多页面复用文章数据
 - 前后端同时做数据校验，减少脏数据写入风险
 - 支持 CSV 导出，满足基础运营数据留存需求
+- 支持内容总览、洞察分析、状态看板等扩展页面，项目内容更完整
 - 支持搜索与多条件筛选，适合管理型后台场景
 
 ## 11. 目录清单
@@ -304,6 +315,10 @@ bolg-post-ment-web/
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
+│   │   │   ├── common/
+│   │   │   ├── dashboard/
+│   │   │   └── posts/
+│   │   ├── hooks/
 │   │   ├── pages/
 │   │   ├── services/
 │   │   ├── styles/

@@ -2,10 +2,13 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import Header from "./components/common/Header";
+import DashboardPage from "./pages/DashboardPage";
 import PostListPage from "./pages/PostListPage";
 import AddPostPage from "./pages/AddPostPage";
 import EditPostPage from "./pages/EditPostPage";
 import ViewPostPage from "./pages/ViewPostPage";
+import InsightsPage from "./pages/InsightsPage";
+import WorkflowPage from "./pages/WorkflowPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 const App = () => {
@@ -15,6 +18,9 @@ const App = () => {
       <main>
         <Routes>
           <Route path="/" element={<PostListPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/insights" element={<InsightsPage />} />
+          <Route path="/workflow" element={<WorkflowPage />} />
           <Route path="/posts/new" element={<AddPostPage />} />
           <Route path="/posts/:id" element={<ViewPostPage />} />
           <Route path="/posts/:id/edit" element={<EditPostPage />} />
